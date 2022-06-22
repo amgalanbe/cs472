@@ -1,0 +1,46 @@
+@font-face {
+    font-family: "OpenSans";
+    src: url('../fonts/OpenSans-Bold.ttf');
+    font-weight: 800;
+}
+@font-face { /*Regular*/
+    font-family: "OpenSans";
+    src: url('../fonts/OpenSans-Regular.ttf');
+    font-weight: 500;
+}
+@font-face {
+    font-family: "OpenSans";
+    src: url('../fonts/OpenSans-Light.ttf');
+    font-weight: 300;
+}
+
+.main {
+    display: flex;
+    font-family: 'OpenSans', Roboto, monospace;
+    background-color: #eeeee4;
+}
+
+.menu {
+    text-align: center;
+    min-width: 330px;
+    /* border: solid 2px red; */
+}
+
+.content {
+    /* border: solid 2px blue; */
+}
+
+.profileImg {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    box-shadow: 0 0 0 0.1em #888888;
+}
+
+.menu ul {
+    list-style-type: disc;
+    text-align: left;
+}
+
+.w3c {
+}
