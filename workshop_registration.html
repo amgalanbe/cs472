@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/styleWorkshopRegistration.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="main">
+        <div class="menu">
+            <img src="images/profile.JPG" alt="profile" id="profileImg" />
+            <h1>Amgalan Bat-Erdene</h1>
+            <ul>
+                <li><a href="index.html">Lab1: This Homepage</a></li>
+                <li><a href="aboutme.html">Lab2: About me</a></li>
+                <li><a href="order.html">Lab3: Order</a></li>
+                <li><a href="workshop_registration.html">Lab4: Workshop Registration</a></li>
+            </ul>
+            <hr />
+            <div class="w3c">
+                <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Forder.html">
+                    <img src="images/XHTML_checker.png" alt="html validator" width="80" />
+                </a>
+
+                <a
+                    href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Forder.html">
+                    <img src="images/css_checker.png" alt="css validator" width="80" />
+                </a>
+            </div>
+        </div>
+        <div class="content">
+            <div class="form-header">
+                Workshop Registration
+            </div>
+            <form action="#">
+                <div>
+                    <a href="#"">Register now while seats are available</a>
+                </div>
+                <div class="form-container">
+                    <div class="form-left-side">
+                        <div class="form-row">
+                            <div class="form-content">First Name *</div>
+                            <div class="form-content">
+                                <input type="text" required pattern="[A-Za-z\- ]+" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-content">Last Name *</div>
+                            <div class="form-content">
+                                <input type="text" required pattern="[A-Za-z\- ]+" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-content">Company/Institution *</div>
+                            <div class="form-content">
+                                <input type="text" required pattern="[A-Za-z\-+. " />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-content">Address *</div>
+                            <div class="form-content">
+                                <textarea rows="5" required pattern="[A-Za-z\-0-9\. ]+"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-content">City</div>
+                            <div class="form-content">
+                                <input type="text" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-content">State/Provence/Region</div>
+                            <div class="form-content">
+                                <select name="state">
+                                    <option selected>-Select-</option>
+                                    <option>Iowa</option>
+                                    <option>Missouri</option>
+                                    <option>Illinois</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-content">Country</div>
+                            <div class="form-content">
+                                <select name="country">
+                                    <option selected>-Select-</option>  
+                                    <option>USA</option>
+                                    <option>Mongolia</option>
+                                    <option>Russia</option>
+                                    <option>China</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-content">Email *</div>
+                            <div class="form-content">
+                                <input type="email" name="email" required pattern="[a z0 9._+]+@[a z0 9.9.\\--]+]+\\.[a z]{2,3}" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-content">Phone Number *</div>
+                            <div class="form-content">
+                                <input type="text" name="phone" required pattern="[1-9]\d{9}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-right-side">
+                        <fieldset class="form-row">
+                            <legend>Lunch:</legend>
+                            <div class="form-content">Meal Preference</div>
+                            <div class="form-content">
+                                <select name="country">
+                                    <option selected>-Select-</option>  
+                                    <option>Vegeterian</option>
+                                    <option>No-shellfish</option>
+                                    <option>Chicken</option>
+                                    <option>Anything</option>
+                                </select>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="form-content-vertical">
+                            <legend>Payment Details</legend>
+                            <div class="form-row">
+                                <div class="form-content">Payment Mode</div>
+                                <div class="form-content form-content-vertical">
+                                    <label><input type="checkbox" name="cash"/>Cash</label>
+                                    <label><input type="checkbox" name="cheque"/>Cheque</label>
+                                    <label><input type="checkbox" name="demand"/>Demand Draft</label>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-content">DD/Cheque No.</div>
+                                <div class="form-content">
+                                    <input type="text" />
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-content">Drawn On (Bank Name)</div>
+                                <div class="form-content">
+                                    <input type="text" />
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-content">Payable at</div>
+                                <div class="form-content">
+                                    <input type="text" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="form-footer">
+                    <div>
+                        <input type="submit" />
+                        <input type="reset" />
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</body>
+
+</html>
