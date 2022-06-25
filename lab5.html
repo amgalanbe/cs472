@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/lab5.css" type="text/css" rel="stylesheet" />
+    <title>Lab5</title>
+    
+</head>
+<body>
+    <div class="main">
+        <div class="menu">
+            <img src="images/profile.JPG" alt="profile" id="profileImg" />
+            <h1>Amgalan Bat-Erdene</h1>
+            <ul>
+                <li><a href="index.html">Lab1: This Homepage</a></li>
+                <li><a href="aboutme.html">Lab2: About me</a></li>
+                <li><a href="order.html">Lab3: Order</a></li>
+                <li><a href="workshop_registration.html">Lab4: Workshop Registration</a></li>
+                <li><a href="lab5.html">Lab5: Javascript Introduction</a></li>
+            </ul>
+            <hr />
+            <div class="w3c">
+                <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Flab5.html">
+                    <img src="images/XHTML_checker.png" alt="html validator" width="80" />
+                </a>
+
+                <a
+                    href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Flab5.html">
+                    <img src="images/css_checker.png" alt="css validator" width="80" />
+                </a>
+            </div>
+        </div>
+        <div class="content">
+            <h1>Lab 5 - Javascript Introduction</h1>
+            <ol>
+                <li>Create a function using function declaration named sum with one parameter of Array type, 
+                    the returned result is the sum of all elements which are greater than 20.
+                    <br/>
+                    <pre>
+function sum(arr) {
+    return arr
+        .filter(i=>i>20)
+        .reduce((s,i)=>s+i);
+}</pre>
+                    <input type="text" pattern="0-9, " placeholder="insert array elements" id="sumInput">
+                    <button class="btn" id="sumButton">Calculate</button> <br/>
+                    Parameter as: [<span id="sumParameter"></span>]<br/>
+                    Result as: <span id="sumResult"></span>
+                </li>
+                <li>Create a function using function expression named getNewArray with one parameter of String Array, 
+                    return a new array which contains all string, length is greater than and equal to 5, 
+                    and contains letter ‘a’.
+                    <pre>
+function getNewArray(arr){
+    return arr
+        .filter( s => s.length >= 5 && s.includes('a'));
+}</pre>
+                    <input type="text" pattern="0-9, " placeholder="insert array elements" id="getNewArrayInput">
+                    <button class="btn" id="getNewArrayButton">Calculate</button> <br/>
+                    Parameter as: [<span id="getNewArrayParameter"></span><br/>]
+                    Result as: [<span id="getNewArrayResult"></span>]
+                </li>
+            </ol>
+        </div>
+    </div>
+    <script src="js/lab5.js" type="text/javascript"></script>
+</body>
+</html>
