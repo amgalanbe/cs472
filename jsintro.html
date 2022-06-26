@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/jsintro.css" type="text/css" rel="stylesheet" />
-    <title>Lab5</title>
+    <title>Javascript Introduction</title>
     
 </head>
 <body>
@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="content">
-            <h1>Lab 5 - Javascript Introduction</h1>
+            <h1>Javascript Introduction</h1>
             <ol>
                 <li>Create a function using function declaration named sum with one parameter of Array type, 
                     the returned result is the sum of all elements which are greater than 20.
@@ -42,13 +42,13 @@
 function sum(arr) {
     return arr
         .filter(i=>i>20)
-        .reduce((s,i)=>s+i);
+        .reduce((s,i)=>s+i, 0);
 }</pre>
                     <input type="text" pattern="0-9, " placeholder="insert array elements" id="sumInput">
                     <button class="btn" id="sumButton">Calculate</button> <br/>
                     Parameter as: [<span id="sumParameter"></span>]<br/>
                     Result as: <span id="sumResult"></span>
-                </li>
+                </li> <br/>
                 <li>Create a function using function expression named getNewArray with one parameter of String Array, 
                     return a new array which contains all string, length is greater than and equal to 5, 
                     and contains letter ‘a’.

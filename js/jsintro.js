@@ -1,7 +1,7 @@
 function sum(arr) {
     return arr
         .filter(i=>i>20)
-        .reduce((s,i)=>s+i);
+        .reduce((s,i)=>s+i, 0);
 }
 
 function getNewArray(arr){
@@ -10,8 +10,8 @@ function getNewArray(arr){
 }
 
 function ExecuteSum(arr){
-    document.getElementById("sumParameter").innerHTML = arr.map(i=>i > 20 ? `<strong>${i}</strong>` : i);
-    document.getElementById("sumResult").innerText = sum(arr);
+    document.getElementById("sumParameter").innerHTML = arr.map(i=> i > 20 ? `<strong>${i}</strong>` : i);
+    document.getElementById("sumResult").innerHTML = sum(arr.map(i=>parseInt(i, 0)));
 }
 
 function ExecuteGetNewArray(arr) {
@@ -24,7 +24,7 @@ function main() {
         const arr = document.getElementById('sumInput').value.replace(' ', '').split(',');
         ExecuteSum(arr);
     });
-
+    
     document.getElementById('getNewArrayButton').addEventListener('click', (event) => {
         const arr = document.getElementById('getNewArrayInput').value.replace(' ', '').split(',');
         ExecuteGetNewArray(arr);
@@ -33,7 +33,7 @@ function main() {
     let arr = [20,22,13,24,15];
     ExecuteSum(arr);
 
-    let strArr = ['banana','strawberry','melon', 'kiwi', 'apple', 'coconut', 'orange', 'grape', 'blueberry'];
+    let strArr = ['banana', 'pear', 'strawberry','melon', 'kiwi', 'apple', 'coconut', 'orange', 'ocra', 'grape', 'blueberry'];
     ExecuteGetNewArray(strArr);
 }
 
