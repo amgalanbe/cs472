@@ -4,7 +4,7 @@ function sum(arr) {
         .reduce((s,i)=>s+i, 0);
 }
 
-function getNewArray(arr){
+const getNewArray = function (arr){
     return arr
         .filter( s => s.length >= 5 && s.includes('a'));
 }

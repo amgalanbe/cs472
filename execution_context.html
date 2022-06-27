@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/execution_context.css" type="text/css" rel="stylesheet" />
+    <title>Execution Context</title>
+</head>
+<body>
+    <div class="main">
+        <div class="menu">
+            <img src="images/profile.JPG" alt="profile" id="profileImg" />
+            <h1>Amgalan Bat-Erdene</h1>
+            <ul>
+                <li><a href="index.html">Lab1: This Homepage</a></li>
+                <li><a href="aboutme.html">Lab2: About me</a></li>
+                <li><a href="order.html">Lab3: Order</a></li>
+                <li><a href="workshop_registration.html">Lab4: Workshop Registration</a></li>
+                <li><a href="jsintro.html">Lab5: Javascript Introduction</a></li>
+                <li><a href="execution_context.html">Lab6: Execution Context</a></li>
+            </ul>
+            <hr />
+            <div class="w3c">
+                <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Fjsintro.html">
+                    <img src="images/XHTML_checker.png" alt="html validator" width="80" />
+                </a>
+
+                <a
+                    href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Fjsintro.html">
+                    <img src="images/css_checker.png" alt="css validator" width="80" />
+                </a>
+            </div>
+        </div>
+        <div class="content">
+            <h1>Execution Context</h1>
+            <ol>
+                <li>
+                    Draw a lexical environment diagram for the below code and show:
+                    <pre>
+function makeArmy() {
+    let shooters = [];
+    let i = 0;
+    while(i < 2){
+        let shooter = function () {
+            alert(i);
+        }
+        shooters.push(shooter);
+        i++;
+    }
+    return shooters; 
+}
+let army = makeArmy();
+army[0];</pre>
+                    <ul>
+                        <li>global lexical environment (LE)</li>
+                        <li>LE for makeArmy()</li>
+                        <li>LE for LE of the while loop</li>
+                        <li>LE for army[0]</li>
+                        <li>What will army[0] alert?</li>
+                        <li>Can you fix the code?</li>
+                        <li>How will the diagram change?</li>
+                    </ul>
+                </li>
+                <li>Write a function <span class="code">printNumbers (from, to)</span> that outputs a number every second, starting from <span class="code">from</span> and ending with <span class="code">to</span>.</li>
+                <li>
+                    In the code below there is a <span class="code">setTimeout</span> call scheduled, then a heavy calculation is run, that takes more than 1000ms to finish
+                    <pre>
+let i = 0;
+setTimeout(() => alert(i), 100); <span class="comment">//?</span>
+
+<span class="comment">//assume that the time to execute this function is > 100ms</span>
+for (let j = 0; j < 100000000; j++) {
+    i++;
+}</pre>
+                    When will the scheduled function run?
+                    <ul>
+                        <li>After the loop.</li>
+                        <li>Before the loop</li>
+                        <li>In the beginning of the loop.</li>
+                        <li>What is alert going to show?</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
