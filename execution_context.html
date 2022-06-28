@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/execution_context.css" type="text/css" rel="stylesheet" />
     <title>Execution Context</title>
-    <script src="js/execution_context.js" type="text/javascript"></script>
+    <script src="js/execution_context.js"></script>
 </head>
 <body>
     <div class="main">
@@ -42,7 +42,7 @@
 function makeArmy() {
     let shooters = [];
     let i = 0;
-    while(i < 2){
+    while(i &lt; 2){
         let shooter = function () {
             alert(i);
         }
@@ -90,7 +90,7 @@ LE: {outer: while, arguments:{length:0}}</pre></li>
 function makeArmy() {
     let shooters = [];
     let i = 0;
-    while(i < 2){
+    while(i &lt; 2){
         let j = i;
         let shooter = function () {
             alert(j);
@@ -155,7 +155,7 @@ let i = 0;
 setTimeout(() => alert(i), 100); <span class="comment">//?</span>
 
 <span class="comment">//assume that the time to execute this function is > 100ms</span>
-for (let j = 0; j < 100000000; j++) {
+for (let j = 0; j &lt; 100000000; j++) {
     i++;
 }</pre>
                     When will the scheduled function run?
