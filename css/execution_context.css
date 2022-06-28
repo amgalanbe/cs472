@@ -74,3 +74,15 @@ pre {
     font-size: 12;
     font-family: 'Courier New', Courier, monospace;
 }
+
+.creation {
+    color: green;
+}
+
+.execution {
+    color: red;
+}
+
+.tdz {
+    color: blue;
+}

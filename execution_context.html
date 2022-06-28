@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/execution_context.css" type="text/css" rel="stylesheet" />
     <title>Execution Context</title>
+    <script src="js/execution_context.js" type="text/javascript"></script>
 </head>
 <body>
     <div class="main">
@@ -22,12 +23,12 @@
             </ul>
             <hr />
             <div class="w3c">
-                <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Fjsintro.html">
+                <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Fexecution_context.html">
                     <img src="images/XHTML_checker.png" alt="html validator" width="80" />
                 </a>
 
                 <a
-                    href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Fjsintro.html">
+                    href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Fexecution_context.html">
                     <img src="images/css_checker.png" alt="css validator" width="80" />
                 </a>
             </div>
@@ -52,17 +53,101 @@ function makeArmy() {
 }
 let army = makeArmy();
 army[0];</pre>
+                    <ol>
+                        <li><pre>global EC: <span class="creation">[Creation]</span> 
+LE: {outer: null, makeArmy: fn} 
+<span class="tdz">TDZ:{army}</span></pre></li>
+                        <li><pre>makeArmy EC: <span class="creation">[Creation]</span> 
+LE: {outer: global, arguments: {length: 0)}} 
+<span class="tdz">TDZ:{shooters, i}</span></pre></li>
+                        <li><pre>makeArmy EC: <span class="execution">[Exection]</span> 
+LE: {outer: global, arguments: {length: 0), shooters:[], i: 0}}</pre></li>
+                        <li><pre>while i=0 EC: <span class="creation">[Creation]</span> 
+LE: {outer: makeArmy} 
+<span class="tdz">TDZ: {shooter}</span></pre></li>
+                        <li><pre>while i=0 EC: <span class="execution">[Execution</span>] 
+LE: {outer: makeArmy, shooter: fn}</pre></li>
+                        <li><pre>makeArmy EC: <span class="execution">[Exection]</span> 
+LE: {outer: global, arguments: {length: 0)}, shooters:[fn], i: 1}</pre></li>
+                        <li><pre>while i=1 EC: <span class="creation">[Creation]</span> 
+LE: {outer: makeArmy} 
+<span class="tdz">TDZ: {shooter}</span></pre></li>
+                        <li><pre>while i=1 EC: <span class="execution">[Execution]</span> 
+LE: {outer: makeArmy, shooter: fn}</pre></li>
+                        <li><pre>makeArmy EC: <span class="execution">[Exection]</span> 
+LE: {outer: global, arguments: {length: 0)}, shooters:[fn, fn], i: 2}</pre></li>
+                        <li><pre>global EC: <span class="execution">[Exection]</span> 
+LE: {outer: null, makeArmy: fn, army:[fn, fn]}</pre></li>
+                        <li><pre>fn EC: <span class="creation">[Creation]</span> 
+LE: {outer: while, arguments:{length:0}}</pre></li>
+                        <li><pre>fn EC: <span class="execution">[Exection]</span> 
+LE: {outer: while, arguments:{length:0}}</pre></li>
+                    </ol>
                     <ul>
-                        <li>global lexical environment (LE)</li>
-                        <li>LE for makeArmy()</li>
-                        <li>LE for LE of the while loop</li>
-                        <li>LE for army[0]</li>
-                        <li>What will army[0] alert?</li>
-                        <li>Can you fix the code?</li>
-                        <li>How will the diagram change?</li>
+                        <li>Can you fix the code?<br/>
+                            Adding let variable in while should fix the issue as it gives closure its own variable.
+                            <pre>
+function makeArmy() {
+    let shooters = [];
+    let i = 0;
+    while(i < 2){
+        let j = i;
+        let shooter = function () {
+            alert(j);
+        }
+        shooters.push(shooter);
+        i++;
+    }
+    return shooters; 
+}
+let army = makeArmy();
+army[0];
+</pre>
+                        </li>
+                        <li>How will the diagram change?<br/>
+                            Only the while part of the Context Execution will change. Here are the changes
+                            <ul>
+                                <li><pre>...</pre></li>
+                                <li><pre>while i=0 EC: <span class="creation">[Creation]</span> 
+LE: {outer: makeArmy} 
+<span class="tdz">TDZ: {shooter, j}</span></pre></li>
+                                <li><pre>while i=0 EC: <span class="execution">[Execution</span>] 
+LE: {outer: makeArmy, shooter: fn, j: 0}</pre></li>
+                                <li><pre>...</pre></li>
+                                <li><pre>while i=1 EC: <span class="creation">[Creation]</span> 
+LE: {outer: makeArmy} 
+<span class="tdz">TDZ: {shooter, j}</span></pre></li>
+                                <li><pre>while i=1 EC: <span class="execution">[Execution]</span> 
+LE: {outer: makeArmy, shooter: fn, j:1}</pre></li>
+                                <li><pre>...</pre></li>
+                                <li><pre>fn EC: <span class="creation">[Creation]</span> 
+LE: {outer: while, arguments:{length:0}}
+while closure: {
+    LE: {outer: makeArmy, shooter: fn, j: 0}
+}</pre></li>
+                                <li><pre>fn EC: <span class="execution">[Exection]</span> 
+LE: {outer: while, arguments:{length:0}}
+while closure: {
+    LE: {outer: makeArmy, shooter: fn, j: 0}
+}</pre></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
-                <li>Write a function <span class="code">printNumbers (from, to)</span> that outputs a number every second, starting from <span class="code">from</span> and ending with <span class="code">to</span>.</li>
+                <li>Write a function <span class="code">printNumbers (from, to)</span> that outputs a number every second, starting from <span class="code">from</span> and ending with <span class="code">to</span>.
+                    <pre>
+function printNumbers (from, to) {
+    let timerID = setInterval(()=>{
+        if(from > to) clearInterval(timerID);
+        else console.log(from++);
+    }, 1000);
+}</pre>               
+                    <input type="text" pattern="[0-9]" placeholder="From" id="fromInput" required>
+                    <input type="text" pattern="[0-9]" placeholder="To" id="toInput" required>
+                    <button class="btn" id="fromToButton">Calculate</button> <br/>
+                    Parameter as: <span id="fromToParameter"></span><br/>
+                    Result as: <span id="fromToResult"></span>
+                </li>
                 <li>
                     In the code below there is a <span class="code">setTimeout</span> call scheduled, then a heavy calculation is run, that takes more than 1000ms to finish
                     <pre>
@@ -75,10 +160,10 @@ for (let j = 0; j < 100000000; j++) {
 }</pre>
                     When will the scheduled function run?
                     <ul>
-                        <li>After the loop.</li>
-                        <li>Before the loop</li>
-                        <li>In the beginning of the loop.</li>
-                        <li>What is alert going to show?</li>
+                        <li>Before the loop.</li>
+                        <li><strong>After the loop.</strong></li>
+                        <li>In the beginning of the loop</li>
+                        <li>What is alert going to show?<br/><strong>100000000</strong></li>
                     </ul>
                 </li>
             </ol>
