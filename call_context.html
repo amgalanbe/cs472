@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/call_context.css" type="text/css" rel="stylesheet" />
+    <title>Call Context</title>
+    <script src="js/call_context.js"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="menu">
+            <img src="images/profile.JPG" alt="profile" id="profileImg" />
+            <h1>Amgalan Bat-Erdene</h1>
+            <ul>
+                <li><a href="index.html">Lab1: This Homepage</a></li>
+                <li><a href="aboutme.html">Lab2: About me</a></li>
+                <li><a href="order.html">Lab3: Order</a></li>
+                <li><a href="workshop_registration.html">Lab4: Workshop Registration</a></li>
+                <li><a href="jsintro.html">Lab5: Javascript Introduction</a></li>
+                <li><a href="execution_context.html">Lab6: Execution Context</a></li>
+                <li><a href="call_context.html">Lab7: Call Context</a></li>
+            </ul>
+            <hr />
+            <div class="w3c">
+                <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Fcall_context.html">
+                    <img src="images/XHTML_checker.png" alt="html validator" width="80" />
+                </a>
+
+                <a
+                    href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Fcall_context.html">
+                    <img src="images/css_checker.png" alt="css validator" width="80" />
+                </a>
+            </div>
+        </div>
+        <div class="content">
+            <h1>Call Context</h1>
+            <ol>
+                <li>Fix a function that loses "this"
+                    <p>
+                        The call to <span class="code">askPassword()</span> in the code below should check the password and then
+                        call <span class="code">user.loginOk/loginFail</span> depending on the answer.
+                    </p>
+                    <p>But it leads to an error. Why? <br/>
+                        <strong>It leads to an error, because when <span class="code">loginOk</span> and <span class="code">loginFail</span> methods are being called from <span class="code">askPassword</span> function 
+                        its <span class="code">this</span> is refers to window rather than user. This happens because this refers to containing object of the function which is <span class="code">window</span>.</strong>
+                    </p>
+                    <p>Fix the highlighted line for everything to start working right (other lines not to be changed).</p>
+                    <pre>
+function askPassword(ok, fail){
+    let password = prompt("Password?", '');
+    if(password == "rockstar") ok();
+    else fail();
+}
+
+let user = {
+    name: 'John',
+    loginOk() {
+        alert(`${this.name} logged in`);
+    },
+
+    loginFail() {
+        alert(`${this.name} failed to log in`);
+    }
+};
+
+<div class="highlight">askPassword(user.loginOk, user.loginFail);</div></pre>
+                    <h2>Solutions:</h2>
+                    <pre>
+<span class="comment">//1. Wrapper</span>
+<span class="highlight">askPassword(()=>user.loginOk(), ()=>user.loginFail());</span>
+OR
+<span class="highlight">askPassword(function(){user.loginOk();}, functino{user.loginFail();});</span></pre>
+                    <pre>
+<span class="comment">//2. bind</span>
+<span class="highlight">askPassword(user.login.loginOk.bind(user), user.login.loginFail.bind(user));</span></pre>
+                    <pre>
+<span class="comment">//3. call with wrapper</span>
+<span class="highlight">askPassword(()=>user.loginOk.call(user), ()=>user.loginFail.call(user));</span></pre>
+                    <pre>
+<span class="comment">//4. apply with wrapper</span>
+<span class="highlight">askPassword(()=>user.loginOk.apply(user), ()=>user.loginFail.apply(user));</span></pre>
+                </li>
+                <li>Fix the code below using bind
+                    <pre>
+let group = {
+    title: "Our Group",
+    students: ["John", "Pete", "Alice"],
+    showList: function() {
+        this.students.forEach(function(student) {
+            console.log(this.title + ": " + student);
+        });
+    }
+}
+
+group.showList();</pre>
+                    <h2>Solutions:</h2>
+                    <pre>
+<span class="comment">//1. Arrow function</span>
+let group = {
+    title: "Our Group",
+    students: ["John", "Pete", "Alice"],
+    showList: function() {
+        this.students.forEach(<span class="highlight">(student) =></span> {
+            console.log(this.title + ": " + student);
+        });
+    }
+}
+
+group.showList();</pre>
+                    <pre>
+<span class="comment">//2. bind</span>
+let group = {
+    title: "Our Group",
+    students: ["John", "Pete", "Alice"],
+    showList: function() {
+        this.students.forEach(function(student) {
+            console.log(this.title + ": " + student);
+        }<span class="highlight">.bind(this)</span>);
+    }
+}
+
+group.showList()</pre>
+                    <pre>
+<span class="comment">//3. self pattern</span>
+let group = {
+    title: "Our Group",
+    students: ["John", "Pete", "Alice"],
+    showList: function() {
+        <span class="highlight">const self = this;</span>
+        this.students.forEach(function(student) {
+            console.log(<span class="highlight">self</span>.title + ": " + student);
+        });
+    }
+}
+
+group.showList();</pre>
+                    <pre>
+<span class="comment">//4. call</span>
+let group = {
+    title: "Our Group",
+    students: ["John", "Pete", "Alice"],
+    showList: function() {
+        this.students.forEach(<span class="highlight">(s)=></span>function(student) {
+            console.log(this.title + ": " + student);
+        }<span class="highlight">.call(this, s)</span>);
+    }
+}
+
+group.showList();</pre>
+                    <pre>
+<span class="comment">//5. apply</span>
+let group = {
+    title: "Our Group",
+    students: ["John", "Pete", "Alice"],
+    showList: function() {
+        this.students.forEach(<span class="highlight">(s)=></span>function(student) {
+            console.log(this.title + ": " + student);
+        }<span class="highlight">.apply(this, [s])</span>);
+    }
+}
+
+group.showList();</pre>
+                </li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
