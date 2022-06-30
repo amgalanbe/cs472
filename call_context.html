@@ -44,7 +44,7 @@
                     </p>
                     <p>But it leads to an error. Why? <br/>
                         <strong>It leads to an error, because when <span class="code">loginOk</span> and <span class="code">loginFail</span> methods are being called from <span class="code">askPassword</span> function 
-                        its <span class="code">this</span> is refers to window rather than user. This happens because this refers to containing object of the function which is <span class="code">window</span>.</strong>
+                        its <span class="code">this</span> is refers to window rather than user. This happens because <span class="code">this</span> refers to containing object of the function which is <span class="code">window</span>.</strong>
                     </p>
                     <p>Fix the highlighted line for everything to start working right (other lines not to be changed).</p>
                     <pre>
@@ -65,7 +65,7 @@ let user = {
     }
 };
 
-<div class="highlight">askPassword(user.loginOk, user.loginFail);</div></pre>
+<span class="highlight">askPassword(user.loginOk, user.loginFail);</span></pre>
                     <h2>Solutions:</h2>
                     <pre>
 <span class="comment">//1. Wrapper</span>
