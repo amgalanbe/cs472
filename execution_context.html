@@ -19,7 +19,14 @@
                 <li><a href="order.html">Lab3: Order</a></li>
                 <li><a href="workshop_registration.html">Lab4: Workshop Registration</a></li>
                 <li><a href="jsintro.html">Lab5: Javascript Introduction</a></li>
-                <li><a href="execution_context.html">Lab6: Execution Context</a></li>
+                <li>
+                    <a href="execution_context.html">Lab6: Execution Context</a>
+                    <ul>
+                        <li><a href="#q1">Q1: Lexical Environment</a></li>
+                        <li><a href="#q2">Q2: setInterval</a></li>
+                        <li><a href="#q3">Q3: setTimeout</a></li>
+                    </ul>
+                </li>
                 <li><a href="call_context.html">Lab7: Call Context</a></li>
                 <li><a href="inheritance.html">Lab8: Inheritance</a></li>
             </ul>
@@ -38,7 +45,7 @@
         <div class="content">
             <h1>Execution Context</h1>
             <ol>
-                <li>
+                <li id="q1">
                     Draw a lexical environment diagram for the below code and show:
                     <pre>
 function makeArmy() {
@@ -136,7 +143,7 @@ while closure: {
                         </li>
                     </ul>
                 </li>
-                <li>Write a function <span class="code">printNumbers (from, to)</span> that outputs a number every second, starting from <span class="code">from</span> and ending with <span class="code">to</span>.
+                <li id="q2">Write a function <span class="code">printNumbers (from, to)</span> that outputs a number every second, starting from <span class="code">from</span> and ending with <span class="code">to</span>.
                     <pre>
 function printNumbers (from, to) {
     let timerID = setInterval(()=>{
@@ -150,7 +157,7 @@ function printNumbers (from, to) {
                     Parameter as: <span id="fromToParameter"></span><br/>
                     Result as: <span id="fromToResult"></span>
                 </li>
-                <li>
+                <li id="q3">
                     In the code below there is a <span class="code">setTimeout</span> call scheduled, then a heavy calculation is run, that takes more than 1000ms to finish
                     <pre>
 let i = 0;

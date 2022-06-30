@@ -21,7 +21,15 @@
                 <li><a href="jsintro.html">Lab5: Javascript Introduction</a></li>
                 <li><a href="execution_context.html">Lab6: Execution Context</a></li>
                 <li><a href="call_context.html">Lab7: Call Context</a></li>
-                <li><a href="inheritance.html">Lab8: Inheritance</a></li>
+                <li>
+                    <a href="inheritance.html">Lab8: Inheritance</a>
+                    <ul>
+                        <li><a href="#q1">Q1: Object Literal</a></li>
+                        <li><a href="#q2">Q2: Constructor Function</a></li>
+                        <li><a href="#q3">Q3: Array constructor</a></li>
+                        <li><a href="#q4">Q4: Singley linked list</a></li>
+                    </ul>
+                </li>
             </ul>
             <hr />
             <div class="w3c">
@@ -38,7 +46,7 @@
         <div class="content">
             <h1>Inheritance</h1>
             <ol>
-                <li>Create an object student using object literal which has
+                <li id="q1">Create an object student using object literal which has
                     <ul>
                         <li>Properties: 
                             <ul>
@@ -103,7 +111,7 @@ Computing average grade for John Smith: 88.33333333333333
 Computing average grade for Edward White: 84.33333333333334
 Overall grade average is: 90.11111111111111</pre>
                 </li>
-                <li>Redo the question 1 using contructor function
+                <li id="q2">Redo the question 1 using contructor function
                     <h4>Creating constructor function for <span class="code">Student</span></h4>
                     <pre>
 function Student(fname, lname, grades=[]) {
@@ -148,7 +156,7 @@ Computing average grade for John Smith: 88.33333333333333
 Computing average grade for Edward White: 84.33333333333334
 Overall grade average is: 90.11111111111111</pre>
                 </li>
-                <li>
+                <li id="q3">
                     Add new method named <span class="code">sort()</span> without parameters in built-in constructor function <span class="code">Array</span>.
                     It'll sort all elements in the array in ascending order. 
                     <h4>Solution:</h4>
@@ -171,7 +179,7 @@ Array.prototype.mySort = function() {
 
 console.log([7, 5, 2, 4, 3, 9].mySort());</pre>
                 </li>
-                <li>Use object literal and constructor function to implement a Singley LinkedList.<br/>
+                <li id="q4">Use object literal and constructor function to implement a Singley LinkedList.<br/>
                     Use case:
                     <pre>
 let linkedlist = new LinkedList();
