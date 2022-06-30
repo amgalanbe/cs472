@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/inheritance.css" type="text/css" rel="stylesheet" />
+    <title>Inheritance</title>
+    <script src="js/inheritance.js"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="menu">
+            <img src="images/profile.JPG" alt="profile" id="profileImg" />
+            <h1>Amgalan Bat-Erdene</h1>
+            <ul>
+                <li><a href="index.html">Lab1: This Homepage</a></li>
+                <li><a href="aboutme.html">Lab2: About me</a></li>
+                <li><a href="order.html">Lab3: Order</a></li>
+                <li><a href="workshop_registration.html">Lab4: Workshop Registration</a></li>
+                <li><a href="jsintro.html">Lab5: Javascript Introduction</a></li>
+                <li><a href="execution_context.html">Lab6: Execution Context</a></li>
+                <li><a href="call_context.html">Lab7: Call Context</a></li>
+                <li><a href="inheritance.html">Lab8: Inheritance</a></li>
+            </ul>
+            <hr />
+            <div class="w3c">
+                <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Finheritance.html">
+                    <img src="images/XHTML_checker.png" alt="html validator" width="80" />
+                </a>
+
+                <a
+                    href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Finheritance.html">
+                    <img src="images/css_checker.png" alt="css validator" width="80" />
+                </a>
+            </div>
+        </div>
+        <div class="content">
+            <h1>Inheritance</h1>
+            <ol>
+                <li>Create an object student using object literal which has
+                    <ul>
+                        <li>Properties: 
+                            <ul>
+                                <li class="code">firstname: String</li>
+                                <li class="code">lastname: String</li>
+                                <li class="code">grades: Array</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Methods:
+                            <ul>
+                                <li><span class="code">inputNewGrade(newGrade)</span> - push newGrade to grades</li>
+                                <li><span class="code">computeAverageGrade()</span> - return average grades</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <pre>
+const student = {
+    firstname: '',
+    lastname: '',
+    grades: [],
+    inputNewGrade: function(newGrade) {
+        this.grades.push(newGrade);
+    },
+    computeAverageGrade: function() {
+        const avg = this.grades.reduce((a, b, index, array) => a + b/array.length, 0);
+        console.log(`Computing average grade for ${this.firstname} ${this.lastname}: ${avg}`);
+        return avg
+    }
+}</pre>
+                    Create an <span class="code">Array</span> with multiple students which are created using <span class="code">Object.create()</span><br/>
+                    Then compute the average grade for all students in the array.
+                    <pre>
+const s1 = Object.create(student, {grades: {value: []}});
+s1.firstname = "Amgalan";
+s1.lastname = "Bat-Erdene";
+s1.inputNewGrade(100);
+s1.inputNewGrade(95);
+s1.inputNewGrade(98);
+
+const s2 = Object.create(student, {grades: {value: []}});
+s2.firstname = "John";
+s2.lastname = "Smith";
+s2.inputNewGrade(100);
+s2.inputNewGrade(80);
+s2.inputNewGrade(85);
+
+const s3 = Object.create(student, {grades: {value: []}});
+s3.firstname = "Edward";
+s3.lastname = "White";
+s3.inputNewGrade(60);
+s3.inputNewGrade(100);
+s3.inputNewGrade(93);
+
+const studentArray = [s1, s2, s3];
+console.log(`Overall grade average is: 
+    ${studentArray.reduce((a, b, index, array) => a + b.computeAverageGrade()/array.length, 0)}`);</pre>
+                    <h4>Output as:</h4>
+                    <pre class="console">
+Computing average grade for Amgalan Bat-Erdene: 97.66666666666666
+Computing average grade for John Smith: 88.33333333333333
+Computing average grade for Edward White: 84.33333333333334
+Overall grade average is: 90.11111111111111</pre>
+                </li>
+                <li>Redo the question 1 using contructor function
+                    <h4>Creating constructor function for <span class="code">Student</span></h4>
+                    <pre>
+function Student(fname, lname, grades=[]) {
+    this.firstname = fname;
+    this.lastname = lname;
+    this.grades = grades;
+}
+
+Student.prototype.inputNewGrade = function(newGrade) {
+    this.grades.push(newGrade);
+}
+
+Student.prototype.computeAverageGrade = function() {
+    const avg = this.grades.reduce((a, b, index, array)=>a + b / array.length, 0);
+    console.log(`Computing average grade for ${this.firstname} ${this.lastname}: ${avg}`);
+    return avg;
+}</pre>
+                    <h4>Creating instances of <span class="code">Student</span> and calculating grade averages</h4>                        
+                    <pre>
+const st1 = new Student('Amgalan', 'Bat-Erdene');
+st1.inputNewGrade(100); 
+st1.inputNewGrade(95);
+st1.inputNewGrade(98);
+
+const st2 = new Student('John', 'Smith');
+st2.inputNewGrade(100);
+st2.inputNewGrade(80);
+st2.inputNewGrade(85);
+
+const st3 = new Student('Edward', 'White');
+st3.inputNewGrade(60);
+st3.inputNewGrade(100);
+st3.inputNewGrade(93);
+
+const studentArray = [st1, st2, st3];
+console.log(`Overall grade average is: 
+    ${studentArray.reduce((a, b, index, array) => a + b.computeAverageGrade()/array.length, 0)}`);</pre>
+                <h4>Output as:</h4>
+                <pre class="console">
+Computing average grade for Amgalan Bat-Erdene: 97.66666666666666
+Computing average grade for John Smith: 88.33333333333333
+Computing average grade for Edward White: 84.33333333333334
+Overall grade average is: 90.11111111111111</pre>
+                </li>
+                <li>
+                    Add new method named <span class="code">sort()</span> without parameters in built-in constructor function <span class="code">Array</span>.
+                    It'll sort all elements in the array in ascending order. 
+                    <h4>Solution:</h4>
+                    <pre>
+Array.prototype.mySort = function() {
+    const arr = this;
+    const n = arr.length;
+    for (let i = 0; i < n-1; i++) {
+        for (let j = 0; j < n-i-1; j++){
+            if (arr[j] > arr[j+1])
+            {
+                const temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+    return arr;
+}
+
+console.log([7, 5, 2, 4, 3, 9].mySort());</pre>
+                </li>
+                <li>Use object literal and constructor function to implement a Singley LinkedList.<br/>
+                    Use case:
+                    <pre>
+let linkedlist = new LinkedList();
+linkedlist.add(1);
+linkedlist.add(2);
+linkedlist.add(3);
+linkedlist.print(); //Expected Result: LinkedList{1,2,3};
+linkedlist.remove(2);
+linkedlist.print(); //Expected Result: LinkedList{1,3};</pre>
+                    <h4>Solution:</h4>
+                    <pre>Code goes here</pre>   
+                </li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

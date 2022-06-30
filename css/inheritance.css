@@ -1,0 +1,85 @@
+@font-face {
+    font-family: "OpenSans";
+    src: url('../fonts/OpenSans-Bold.ttf');
+    font-weight: 800;
+}
+@font-face { /*Regular*/
+    font-family: "OpenSans";
+    src: url('../fonts/OpenSans-Regular.ttf');
+    font-weight: 500;
+}
+@font-face {
+    font-family: "OpenSans";
+    src: url('../fonts/OpenSans-Light.ttf');
+    font-weight: 300;
+}
+
+html, body {
+    font-family: 'OpenSans', Roboto, monospace;
+    background-color: #eeeee4;
+    overflow: hidden;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.main {
+    display: flex;
+    height: 100%;
+}
+
+.menu {
+    text-align: center;
+    min-width: 330px;
+}
+
+.content {
+    flex-grow: 1;
+    overflow: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 10px;
+    border-left: 1px solid #888888;
+    margin-top: 10px;
+}
+
+#profileImg {
+    margin-top: 10px;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    box-shadow: 0 0 0 0.1em #888888;
+}
+
+.menu ul {
+    list-style-type: disc;
+    text-align: left;
+}
+
+.content > h1 {
+    text-align: center;
+}
+
+pre {
+    font-size: large;
+    background-color: #f6f6f6;
+    padding: 10px   ;
+}
+
+.comment {
+    color: green;
+}
+
+.code {
+    font-size: 12pt;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.highlight {
+    /* color: white; */
+    background-color: blanchedalmond;
+}
+
+.console {
+    color: blue;
+}
