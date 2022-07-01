@@ -48,13 +48,13 @@ function Student(fname, lname, grades=[]) {
 
 Student.prototype.inputNewGrade = function(newGrade) {
     this.grades.push(newGrade);
-}
+};
 
 Student.prototype.computeAverageGrade = function() {
     const avg = this.grades.reduce((a, b, index, array)=>a + b / array.length, 0);
     console.log(`Computing average grade for ${this.firstname} ${this.lastname}: ${avg}`);
     return avg;
-}
+};
 
 function getConstructoFunctionStudentArray(){
     const st1 = new Student('Amgalan', 'Bat-Erdene');
@@ -104,3 +104,65 @@ Array.prototype.mySort = function() {
 }
 
 console.log([7, 5, 2, 4, 3, 9].mySort());
+
+//4. Singley LinkedList
+
+function LinkedNode(val) {
+    this.value = val;
+    this.next = null
+}
+
+function LinkedList() {
+    this.head = null;
+    this.size = 0;
+}
+
+LinkedList.prototype.add = function(val) {
+    if(this.head) {
+        let node = this.head;
+        while(node.next) {
+            node = node.next;
+        }
+        node.next = new LinkedNode(val);
+    } else this.head = new LinkedNode(val);
+    this.size++;
+}
+
+LinkedList.prototype.remove = function(val) {
+    if(this.size > 0) {
+        let prev;
+        let node = this.head;
+        while(node && node.value != val) {
+            prev = node;
+            node = node.next;
+        }
+
+        if(node) {
+            if(prev) {
+                prev.next = node.next;
+            } else this.head = node.next;
+
+            this.size--;
+        }
+    }
+}
+
+LinkedList.prototype.print = function() {
+    let node = this.head;
+    let msg = "LinkedList{";
+    while(node.next) {
+        msg += node.value + ", ";
+        node = node.next;
+    }
+    msg += `${node.value}};`;
+    console.log(msg);
+}
+
+
+let linkedlist = new LinkedList();
+linkedlist.add(1);
+linkedlist.add(2);
+linkedlist.add(3);
+linkedlist.print(); //Expected Result: LinkedList{1,2,3};
+linkedlist.remove(2);
+linkedlist.print(); //Expected Result: LinkedList{1,3};

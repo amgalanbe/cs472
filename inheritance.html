@@ -164,8 +164,8 @@ Overall grade average is: 90.11111111111111</pre>
 Array.prototype.mySort = function() {
     const arr = this;
     const n = arr.length;
-    for (let i = 0; i < n-1; i++) {
-        for (let j = 0; j < n-i-1; j++){
+    for (let i = 0; i &lt; n-1; i++) {
+        for (let j = 0; j &lt; n-i-1; j++){
             if (arr[j] > arr[j+1])
             {
                 const temp = arr[j];
@@ -189,8 +189,63 @@ linkedlist.add(3);
 linkedlist.print(); //Expected Result: LinkedList{1,2,3};
 linkedlist.remove(2);
 linkedlist.print(); //Expected Result: LinkedList{1,3};</pre>
-                    <h4>Solution:</h4>
-                    <pre>Code goes here</pre>   
+                    <h4>LinkedNode constructor function</h4>
+                    <pre>
+function LinkedNode(val) {
+    this.value = val;
+    this.next = null
+}</pre>
+                    <h4>LinkedList constructor function</h4>
+                    <pre>
+function LinkedList() {
+    this.head = null;
+    this.size = 0;
+}
+
+LinkedList.prototype.add = function(val) {
+    if(this.head) {
+        let node = this.head;
+        while(node.next) {
+            node = node.next;
+        }
+        node.next = new LinkedNode(val);
+    } else this.head = new LinkedNode(val);
+    this.size++;
+}
+
+LinkedList.prototype.remove = function(val) {
+    if(this.size > 0) {
+        let prev;
+        let node = this.head;
+        while(node && node.value != val) {
+            prev = node;
+            node = node.next;
+        }
+
+        if(node) {
+            if(prev) {
+                prev.next = node.next;
+            } else this.head = node.next;
+
+            this.size--;
+        }
+    }
+}
+
+LinkedList.prototype.print = function() {
+    let node = this.head;
+    let msg = "LinkedList{";
+    while(node.next) {
+        msg += node.value + ", ";
+        node = node.next;
+    }
+    msg += `${node.value}};`;
+    console.log(msg);
+}</pre>
+                    <h4>Output as:</h4>
+                    <pre class="console">
+LinkedList{1, 2, 3};
+LinkedList{1, 3};</pre>
                 </li>
             </ol>
         </div>
