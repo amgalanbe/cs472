@@ -12,7 +12,7 @@ const student = {
         console.log(`Computing average grade for ${this.firstname} ${this.lastname}: ${avg}`);
         return avg
     }
-}
+};
 
 function getObjectLiteralStudentArray() {
     const s1 = Object.create(student, {grades: {value: []}});
@@ -101,7 +101,7 @@ Array.prototype.mySort = function() {
         }
     }
     return arr;
-}
+};
 
 console.log([7, 5, 2, 4, 3, 9].mySort());
 
@@ -126,7 +126,7 @@ LinkedList.prototype.add = function(val) {
         node.next = new LinkedNode(val);
     } else this.head = new LinkedNode(val);
     this.size++;
-}
+};
 
 LinkedList.prototype.remove = function(val) {
     if(this.size > 0) {
@@ -145,7 +145,7 @@ LinkedList.prototype.remove = function(val) {
             this.size--;
         }
     }
-}
+};
 
 LinkedList.prototype.print = function() {
     let node = this.head;
@@ -156,8 +156,7 @@ LinkedList.prototype.print = function() {
     }
     msg += `${node.value}};`;
     console.log(msg);
-}
-
+};
 
 let linkedlist = new LinkedList();
 linkedlist.add(1);

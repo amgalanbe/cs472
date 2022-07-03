@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/class.css" type="text/css" rel="stylesheet" />
+    <title>Class</title>
+    <script src="js/class.js"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="menu">
+            <img src="images/profile.JPG" alt="profile" id="profileImg" />
+            <h1>Amgalan Bat-Erdene</h1>
+            <ul>
+                <li><a href="index.html">Lab1: This Homepage</a></li>
+                <li><a href="aboutme.html">Lab2: About me</a></li>
+                <li><a href="order.html">Lab3: Order</a></li>
+                <li><a href="workshop_registration.html">Lab4: Workshop Registration</a></li>
+                <li><a href="jsintro.html">Lab5: Javascript Introduction</a></li>
+                <li><a href="execution_context.html">Lab6: Execution Context</a></li>
+                <li><a href="call_context.html">Lab7: Call Context</a></li>
+                <li><a href="inheritance.html">Lab8: Inheritance</a></li>
+                <li><a href="class.html">Lab9: Class</a>
+                    <ul>
+                        <li><a href="#q1">Q1: LinkedList</a></li>
+                        <li><a href="#q2">Q2: Quiz</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <hr />
+            <div class="w3c">
+                <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Fclass.html">
+                    <img src="images/XHTML_checker.png" alt="html validator" width="80" />
+                </a>
+
+                <a
+                    href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Fclass.html">
+                    <img src="images/css_checker.png" alt="css validator" width="80" />
+                </a>
+            </div>
+        </div>
+        <div class="content">
+            <h1>Class</h1>
+            <ol>
+                <li id="q1">Use class syntax to create LinkedList. Methods below:
+                    <ul>
+                        <li>add(value)</li>
+                        <li>remove(value)</li>
+                        <li>print()</li>
+                    </ul>
+                    You are allowed to add other methods if it is necessary.<br/>
+                    After completion, we can call methods as below and see the results in console if call print().
+                    <pre>
+linkedlist.add(1); 
+linkedlist.add(2); 
+linkedlist.add(3); 
+linkedlist.print(); <span class="comment">//in the console, you should see: LinkedList{1,2,3}</span>
+linkedlist.remove(3); 
+linkedlist.print(); <span class="comment">//in the console, you should see: LinkedList{1,3}</span>
+                    </pre>
+                    <h3>Solution</h3>
+                    <h4>LinkedNode</h4>
+                    <pre>
+class LinkedNode {
+    constructor(val) {
+        this.value = val;
+        this.next = null;
+    }
+}</pre>
+                    <h4>LinkedList</h4>
+                    <pre>
+class LinkedList {
+    constructor() {
+        this.head = null;
+        this.size = 0;
+    }
+
+    add(value) {
+        if(this.head){
+            let node = this.head;
+            while(node.next){
+                node = node.next;
+            }
+            node.next = new LinkedNode(value);
+        } else this.head = new LinkedNode(value);
+        this.size++;
+    }
+
+    remove(value) {
+        let node = this.head;
+        let prev = null;
+        while(node && node.value != value) {
+            prev = node;
+            node = node.next;
+        }
+        if(node) {
+            if(prev) prev.next = node.next;
+            else this.head = node.next;
+            
+            this.size--;
+        }
+    }
+
+    print() {
+        let msg = "LinkedList{";
+        let node = this.head;
+        while(node.next) {
+            msg += node.value + ","
+            node = node.next;
+        }
+        msg += node.value + "}";
+        console.log(msg);
+    }
+}</pre>
+                    <h4>Output as</h4>
+                    <pre class="console">
+LinkedList{1,2,3}
+LinkedList{1,2}</pre>
+                </li>
+                <li id="q2">
+                    This is a quiz system which allows students to take quiz, get each student's quiz score and compute average score of students.<br/>
+                    You need to use constructor functions or class syntax to implement <spa class="code">Student, Question</spa> and <spa class="code">Quiz</spa><br/>
+                    <ul>
+                        <li>constructor function/class <spa class="code">Student</spa>:<br/>
+                            Properties
+                            <ul>
+                                <li><spa class="code">studentId</spa> - a unique student id</li>
+                                <li><spa class="code">answers</spa> - holds an array that records the student's answers for the questions.</li>
+                            </ul>
+                            method: 
+                            <ul>
+                                <li><spa class="code">addAnswer(question)</spa> - add student's <spa class="code">question(id, answer)</spa> to <spa class="code">answers</spa> array.</li>
+                            </ul>
+                        </li>
+                        <li>constructor function/class <spa class="code">Question</spa>:<br/>
+                            Properties
+                            <ul>
+                                <li><spa class="code">qid</spa> - unique quesiton id</li>
+                                <li><spa class="code">answer</spa> - hold quiz correct answer or student's answer</li>
+                            </ul>
+                            method: 
+                            <ul>
+                                <li><spa class="code">checkAnswer(answer)</spa> - used to check if student's answer is correct</li>
+                            </ul>
+                        </li>
+                        <li>constructor function/class <spa class="code">Quiz</spa>:<br/>
+                            Properties
+                            <ul>
+                                <li><spa class="code">questions</spa> - It's a Map which holds question id and correct answers. The key is question id, the value is the correct answer for this question</li>
+                                <li><spa class="code">students</spa> - an array holds all students</li>
+                            </ul>
+                            method: 
+                            <ul>
+                                <li><spa class="code">scoreStudent(sid)</spa> - computes the quiz score for this student</li>
+                                <li><spa class="code">getAverageScore()</spa> - computes the average score over all students</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    After you complete the <spa class="code">Question, Student</spa> and <spa class="code">Quiz</spa> constructor functions, we may use the system as below: <br/>
+                    Your system should return the correct result for <spa class="code">getAverageScore()</spa> and <spa class="code">scoreStudent(sid)</spa> as the expected result.
+                    <pre>
+const student1 = new Student(10); 
+student1.addAnswer(new Question(2, 'a')); 
+student1.addAnswer(new Question(3, 'b')); 
+student1.addAnswer(new Question(1, 'b')); 
+const student2 = new Student(11); 
+student2.addAnswer(new Question(3, 'b')); 
+student2.addAnswer(new Question(2, 'a')); 
+student2.addAnswer(new Question(1, 'd')); 
+const students = [student1, student2]; 
+const questions =[new Question(1, 'b'), new Question(2, 'a'), new Question(3, 'b')]; 
+const quiz = new Quiz(questions, students); 
+let scoreforStudent10 = quiz.scoreStudentBySid(10); 
+console.log(scoreforStudent10); <span class="comment">//Expected Result: 3</span>
+let scoreforStudent11 = quiz.scoreStudentBySid(11); 
+console.log(scoreforStudent11); <span class="comment">//Expected Result: 2</span> 
+let average = quiz.getAverageScore();
+console.log(average); <span class="comment">//Expected Reuslt: 2.5</span></pre>
+                    <h3>Solution</h3>
+                    <h4>Student</h4>
+                    <pre>
+class Student {
+    constructor(studentID) {
+        this.studentID = studentID;
+        this.answers = [];
+    }
+
+    addAnswer(question) {
+        this.answers.push(question);
+
+    }
+}</pre>
+                    <h4>Question</h4>
+                    <pre>
+class Question {
+    constructor(quid, answer) {
+        this.quid = quid;
+        this.answer = answer;
+    }
+
+    checkAnswer(answer) {
+        return this.answer == answer;
+    }
+}</pre>
+                    <h4>Quiz</h4>
+                    <pre>
+class Quiz {
+    constructor(questions, students) {
+        this.questions = questions;
+        this.students = students;
+    }
+
+    scoreStudentBySid(sid){
+        return this.students
+                .find(s=>s.studentID == sid)
+                    .answers
+                        .reduce((prev, curr) => prev + this.questions.find(q=>q.quid == curr.quid).checkAnswer(curr.answer), 0);
+    }
+
+    getAverageScore() {
+        return students.reduce((prev, curr, index, array) => prev + this.scoreStudentBySid(curr.studentID) / array.length, 0);
+    }
+}</pre>
+                    <h4>Output as</h4>
+                    <pre class="console">
+3
+2
+2.5</pre>
+                </li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

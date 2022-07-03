@@ -28,6 +28,7 @@
                     </ul>
                 </li>
                 <li><a href="inheritance.html">Lab8: Inheritance</a></li>
+                <li><a href="class.html">Lab9: Class</a></li>
             </ul>
             <hr />
             <div class="w3c">
@@ -81,7 +82,7 @@ OR
 <span class="highlight">askPassword(function(){user.loginOk();}, functino{user.loginFail();});</span></pre>
                     <pre>
 <span class="comment">//2. bind</span>
-<span class="highlight">askPassword(user.login.loginOk.bind(user), user.login.loginFail.bind(user));</span></pre>
+<span class="highlight">askPassword(user.loginOk.bind(user), user.loginFail.bind(user));</span></pre>
                     <pre>
 <span class="comment">//3. call with wrapper</span>
 <span class="highlight">askPassword(()=>user.loginOk.call(user), ()=>user.loginFail.call(user));</span></pre>

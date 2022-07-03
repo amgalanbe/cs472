@@ -29,6 +29,7 @@
                 </li>
                 <li><a href="call_context.html">Lab7: Call Context</a></li>
                 <li><a href="inheritance.html">Lab8: Inheritance</a></li>
+                <li><a href="class.html">Lab9: Class</a></li>
             </ul>
             <hr />
             <div class="w3c">
@@ -66,6 +67,8 @@ army[0];</pre>
                         <li><pre>global EC: <span class="creation">[Creation]</span> 
 LE: {outer: null, makeArmy: fn} 
 <span class="tdz">TDZ:{army}</span></pre></li>
+                        <li><pre>global EC: <span class="execution">[Exection]</span> 
+LE: {outer: null, makeArmy: fn, army:}</pre></li>
                         <li><pre>makeArmy EC: <span class="creation">[Creation]</span> 
 LE: {outer: global, arguments: {length: 0)}} 
 <span class="tdz">TDZ:{shooters, i}</span></pre></li>
