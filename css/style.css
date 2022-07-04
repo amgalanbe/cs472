@@ -41,8 +41,8 @@ html, body {
 #profileImg {
     margin-top: 10px;
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     box-shadow: 0 0 0 0.1em #888888;
 }
 
