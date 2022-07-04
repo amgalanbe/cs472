@@ -119,48 +119,47 @@ class LinkedList {
 LinkedList{1,2,3}
 LinkedList{1,2}</pre>
                 </li>
-                <li id="q2"> 
-                    <div>
+                <li id="q2">
                     This is a quiz system which allows students to take quiz, get each student's quiz score and compute average score of students.<br/>
-                    You need to use constructor functions or class syntax to implement <spa class="code">Student, Question</spa> and <spa class="code">Quiz</spa><br/>
+                    You need to use constructor functions or class syntax to implement <span class="code">Student, Question</span> and <span class="code">Quiz</span><br/>
                     <ul>
-                        <li>constructor function/class <spa class="code">Student</spa>:<br/>
+                        <li>constructor function/class <span class="code">Student</spa>:<br/>
                             Properties
                             <ul>
-                                <li><spa class="code">studentId</spa> - a unique student id</li>
-                                <li><spa class="code">answers</spa> - holds an array that records the student's answers for the questions.</li>
+                                <li><span class="code">studentId</span> - a unique student id</li>
+                                <li><span class="code">answers</span> - holds an array that records the student's answers for the questions.</li>
                             </ul>
                             method: 
                             <ul>
-                                <li><spa class="code">addAnswer(question)</spa> - add student's <spa class="code">question(id, answer)</spa> to <spa class="code">answers</spa> array.</li>
+                                <li><span class="code">addAnswer(question)</span> - add student's <span class="code">question(id, answer)</span> to <span class="code">answers</span> array.</li>
                             </ul>
                         </li>
-                        <li>constructor function/class <spa class="code">Question</spa>:<br/>
+                        <li>constructor function/class <span class="code">Question</span>:<br/>
                             Properties
                             <ul>
-                                <li><spa class="code">qid</spa> - unique quesiton id</li>
-                                <li><spa class="code">answer</spa> - hold quiz correct answer or student's answer</li>
+                                <li><span class="code">qid</span> - unique quesiton id</li>
+                                <li><span class="code">answer</span> - hold quiz correct answer or student's answer</li>
                             </ul>
                             method: 
                             <ul>
-                                <li><spa class="code">checkAnswer(answer)</spa> - used to check if student's answer is correct</li>
+                                <li><span class="code">checkAnswer(answer)</span> - used to check if student's answer is correct</li>
                             </ul>
                         </li>
-                        <li>constructor function/class <spa class="code">Quiz</spa>:<br/>
+                        <li>constructor function/class <span class="code">Quiz</span>:<br/>
                             Properties
                             <ul>
-                                <li><spa class="code">questions</spa> - It's a Map which holds question id and correct answers. The key is question id, the value is the correct answer for this question</li>
-                                <li><spa class="code">students</spa> - an array holds all students</li>
+                                <li><span class="code">questions</span> - It's a Map which holds question id and correct answers. The key is question id, the value is the correct answer for this question</li>
+                                <li><span class="code">students</span> - an array holds all students</li>
                             </ul>
                             method: 
                             <ul>
-                                <li><spa class="code">scoreStudent(sid)</spa> - computes the quiz score for this student</li>
-                                <li><spa class="code">getAverageScore()</spa> - computes the average score over all students</li>
+                                <li><span class="code">scoreStudent(sid)</span> - computes the quiz score for this student</li>
+                                <li><span class="code">getAverageScore()</span> - computes the average score over all students</li>
                             </ul>
                         </li>
                     </ul>
-                    After you complete the <spa class="code">Question, Student</spa> and <spa class="code">Quiz</spa> constructor functions, we may use the system as below: <br/>
-                    Your system should return the correct result for <spa class="code">getAverageScore()</spa> and <spa class="code">scoreStudent(sid)</spa> as the expected result.
+                    After you complete the <span class="code">Question, Student</span> and <span class="code">Quiz</span> constructor functions, we may use the system as below: <br/>
+                    Your system should return the correct result for <span class="code">getAverageScore()</span> and <span class="code">scoreStudent(sid)</span> as the expected result.
                     <pre>
 const student1 = new Student(10); 
 student1.addAnswer(new Question(2, 'a')); 
@@ -229,7 +228,6 @@ class Quiz {
 3
 2
 2.5</pre>
-                </div>
                 </li>
             </ol>
         </div>
