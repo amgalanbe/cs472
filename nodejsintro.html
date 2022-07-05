@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/nodejsintro.css" type="text/css" rel="stylesheet"/>
+    <script src="js/nodejsintro.js"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="menu">
+            <img src="images/profile.JPG" alt="profile" id="profileImg" />
+            <h1>Amgalan Bat-Erdene</h1>
+            <ul>
+                <li><a href="index.html">Lab1: This Homepage</a></li>
+                <li><a href="aboutme.html">Lab2: About me</a></li>
+                <li><a href="order.html">Lab3: Order</a></li>
+                <li><a href="workshop_registration.html">Lab4: Workshop Registration</a></li>
+                <li><a href="jsintro.html">Lab5: Javascript Introduction</a></li>
+                <li><a href="execution_context.html">Lab6: Execution Context</a></li>
+                <li><a href="call_context.html">Lab7: Call Context</a></li>
+                <li><a href="inheritance.html">Lab8: Inheritance</a></li>
+                <li><a href="class.html">Lab9: Class</a></li>
+                <li><a href="nodejsintro.html">Lab10: Node.js Introduction</a>
+                    <ul>
+                        <li><a href="#q1">Q1: Node CLI</a></li>
+                        <li><a href="#q2">Q2: Eventloop</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <hr />
+            <div class="w3c">
+                <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Fnodejsintro.html">
+                    <img src="images/XHTML_checker.png" alt="html validator" width="80" />
+                </a>
+
+                <a
+                    href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Fnodejsintro.html">
+                    <img src="images/css_checker.png" alt="css validator" width="80" />
+                </a>
+            </div>
+        </div>
+        <div class="content">
+            <h1>Node.js Introduction</h1>
+            <ol>
+                <li id="q1">Question 1:<br/>
+                    Write the necessary Node script to make this code work for all arrays. Test your code in Node.JS CLI 
+                    <pre>
+[1,2,3,4,5,6,7,8].even(); <span class="comment">//[2,4,6,8]</span>
+[1,2,3,4,5,6,7,8].odd();  <span class="comment">//[1,3,5,7]</span></pre>
+                    <h3>Solution</h3>
+                    <h4>array_classes.js file content</h4>
+                    <pre>
+Array.prototype.even = function(){
+    return this.filter(i=>i%2==0);
+};
+
+Array.prototype.odd = function(){
+    return this.filter(i=>i%2==1);
+};</pre>
+                    <h4>In node CLI</h4>
+                    <pre>
+> require('./array_classes');
+<span class="console">{}</span>
+> [1,2,3,4,5,6,7,8].even();
+<span class="console">[ 2, 4, 6, 8 ]</span>
+> [1,2,3,4,5,6,7,8].odd();
+<span class="console">[ 1, 3, 5, 7 ]</span></pre>
+                </li>
+                <li id="q2">Question 2:
+                    <ol>
+                        <li>Explain why do we want sometimes to use <span class="code">setImmediate</span> instead of using <span class="code">setTimeout</span>?
+                            <p>
+                                Because <span class="code">setImmediate</span> and <span class="code">setTimeout</span> functions execute in different eventloop phases they can be used to accomodate programming requirement.
+                                For Example: Suppose there is a funciton we need to run immediately after I/O callback function we might want to use <span class="code">setImmediate</span> rather than <span class="code">setTimeout</span>.
+                                If <span class="code">setTimeout</span> were to be used it will wait for next iteration of eventloop which might cause unwanted behavoiur to happen if there were other function in close callback eventloop phase.
+                            </p>
+                            <img src="images/node_eventloop.png" alt="Node Eventloop"/>
+                        </li>
+                        <li>Explain the difference between <span class="code">process.nextTick</span> and <span class="code">setImmediate</span>?<br/>
+                            <p>
+                                <span class="code">process.nextTick</span> is not part of the event loop, it adds the callback into the
+                                nextTick queue. Node processes all the callbacks in the nextTick queue after
+                                the current operation completes and before the event loop continues.<br/>
+                                On the other hand, <span class="code">setimmediate</span> schedules a callback to run at check phase of the event loop after IO events' callbacks.
+                            </p>
+                        </li>
+                        <li>Does Node.js has window object?<br/>
+                            <p>
+                                Node.js does not have window object because js run on the server side. 
+                                Instead there are global modules and methods that are automatically created for us.
+                            </p>
+                        </li>
+                    </ol>
+                </li>
+        </div>
+    </div>
+</body>
+</html>
