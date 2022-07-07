@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>npm And HTTP</title>
-    <link href="css/nodejsintro.css" type="text/css" rel="stylesheet"/>
+    <link href="css/npm_http.css" type="text/css" rel="stylesheet"/>
     <script src="js/nodejsintro.js"></script>
 </head>
 <body>
@@ -43,10 +43,83 @@
             <ol>
                 <li id="q1">Create a simple Node script that converts 'www.miu.edu' domain name to the equivalent IP address. 
                     (Search and learn 'dns' module, resolve4) - For this exercise, you need to look up Node.js API by yourself
+                    <h3>Solution</h3>
+                    <pre>
+const dns = require('dns');
+dns.lookup('www.miu.edu',function(err, result){
+    console.log(result)
+});
+</pre>
+                    <h4>Output as</h4>
+                    <pre class="console">192.249.118.206</pre>
                 </li>
                 <li id="q2">
                     Create a web server that's going to send a response of big image to any client that sends a request to your 
                     specified server:port. (Try to solve this in many different ways)
+                    <h3>Solution</h3>
+                    <h4>Synchronous</h4>
+                    <pre>
+const fs = require('fs');
+const path = require('path');
+const http = require('http');
+
+const port = 3000;
+const server = http.createServer();
+server.on('request', function(req, res){
+    try {
+        const readPath = path.join(__dirname, '..', 'images', 'happy.webp');
+        const data = fs.readFileSync(readPath);
+        res.writeHead(200, {'Content-Type': 'text/plain'});
+        res.write(data)
+    } catch(err) {
+        console.log(err);
+    }
+});
+server.listen(port);</pre>
+                    <h4>Asynchronous</h4>
+                    <pre>
+const fs = require('fs');
+const path = require('path');
+const http = require('http');
+
+http.createServer(function(req, res){
+    const readPath = path.join(__dirname, '..', 'images', 'happy.webp');
+    fs.readFile(readPath, function(err, data) {
+        if(err)
+            console.log(err);
+        else {
+            console.log('started loading data');
+            res.writeHead(200, {'Content-Type': 'text/plain'});
+            res.write(data)
+        }
+            
+    });
+}).listen(port);</pre>
+                    <h4>Stream</h4>
+                    <pre>
+const fs = require('fs');
+const path = require('path');
+const http = require('http');
+
+http.createServer((req, res)=>{
+    const readPath = path.join(__dirname, '..', 'images', 'happy.webp');
+    const readable = fs.createReadStream(readPath, {highWaterMark: 8 * 1024});
+    readable.on('data', function(chunk){
+        console.log('writing ' + chunk.length + ' long chunk of data');
+        res.write(chunk);
+    });
+}).listen(port);</pre>
+                    <h4>Pipe</h4>
+                    <pre>
+const fs = require('fs');
+const path = require('path');
+const http = require('http');
+
+http.createServer((req, res) => {
+    const readPath = path.join(__dirname, '..', 'images', 'happy.webp');
+    const readable = fs.createReadStream(readPath, {highWaterMark: 16 * 1024});
+    readable.pipe(res);
+}).listen(port);</pre>
                 </li>
             </ol>
         </div>
