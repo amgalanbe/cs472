@@ -1,0 +1,14 @@
+.main {
+    text-align: center;
+}
+
+table, th, td{
+    table-layout:fixed;
+    width: 100%;
+    border: 1px solid gray;
+    border-collapse: collapse;
+}
+
+img {
+    height: 100px;
+}
