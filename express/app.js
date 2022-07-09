@@ -25,7 +25,7 @@ app.get('/', (req, res, next) => {
     res.status(500).sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
-router.use((req, res, next) => {
+app.use((req, res, next) => {
     res.status(404).sendFile(path.join(__dirname, '..', 'views', '404.html'));
 });
 
