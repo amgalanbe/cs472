@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/rest.css" type="text/css" rel="stylesheet"/>
-    <title>REST</title>
+    <link href="css/async.css" type="text/css" rel="stylesheet"/>
+    <title>Promise, Async, Fetch</title>
 </head>
 <body>
     <div class="main">
@@ -30,27 +30,27 @@
             </ul>
             <hr />
             <div class="w3c">
-                <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Frest.html">
+                <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Fasync.html">
                     <img src="images/XHTML_checker.png" alt="html validator" width="80" />
                 </a>
 
                 <a
-                    href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Frest.html">
+                    href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Famgalanbe.github.io%2Fcs472%2Fasync.html">
                     <img src="images/css_checker.png" alt="css validator" width="80" />
                 </a>
             </div>
         </div>
         <div class="content">
-            <h1>REST</h1>
+            <h1>Promise, Async, Fetch</h1>
+            Implement the features below inside shoppingcart-client project. This project acts as SPA which make calls to shoppingcart-server APIs. 
             <ol>
-                <li>Download the start-up project shoppingcart-server from class demo or you create everything from scrtach.</li>
-                <li>Run "npm install" under shoppingcart-server to get express package installed.</li>
-                <li>Implement the features below inside shoppingcart-server REST applicaiton
+                <li>Modify index.html, carousel.css to match your design</li>
+                <li>Write JS code in main.js to implement the feature:
                     <ol>
-                        <li>CRUD(create, read, update, delete) books: make sure you use the proper URLs and HTTP Methods</li>
-                        <li>A book has properties: id, title, ISBN, publishedDate, author</li>
-                        <li>make proper changes in js files to implement the step 1 features</li>
-                        <li>Use Postman to test your REST APIs</li>
+                        <li>List all books in index.html when open index.html in browser</li>
+                        <li>Click "Submit" button to add a new book with properties: title, ISBN, publishedDate, author (id is auto generated)</li>
+                        <li>Click "Update" button to Edit a book and save to server side</li>
+                        <li>Click "Delete" button to remove a book from server side</li>
                     </ol>
                 </li>
             </ol>
